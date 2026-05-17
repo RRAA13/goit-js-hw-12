@@ -32,6 +32,7 @@ async function onSearch(e) {
   if (!query) return;
 
   page = 1;
+
   clearGallery();
   hideLoadMoreButton();
   showLoader();
@@ -52,14 +53,22 @@ async function onSearch(e) {
 
     createGallery(data.hits);
 
-    if (totalHits > PER_PAGE) {
+    const totalPages = Math.ceil(totalHits / PER_PAGE);
+
+    if (totalPages > 1) {
       showLoadMoreButton();
     } else {
       hideLoadMoreButton();
+
+      iziToast.info({
+        message:
+          "We're sorry, but you've reached the end of search results.",
+        position: 'topRight',
+      });
     }
-  } catch (err) {
+  } catch (error) {
     iziToast.error({
-      message: 'Something went wrong',
+      message: 'Error loading images',
       position: 'topRight',
     });
   } finally {
@@ -94,9 +103,9 @@ async function onLoadMore() {
     }
 
     smoothScroll();
-  } catch (err) {
+  } catch (error) {
     iziToast.error({
-      message: 'Error loading more images',
+      message: 'Error loading images',
       position: 'topRight',
     });
   } finally {
