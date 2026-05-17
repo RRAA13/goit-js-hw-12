@@ -23,11 +23,30 @@ export function createGallery(images) {
 
   const markup = images
     .map(
-      image => `
+      ({
+        largeImageURL,
+        webformatURL,
+        tags,
+        likes,
+        views,
+        comments,
+        downloads,
+      }) => `
 <li class="gallery-item">
-  <a href="${image.largeImageURL}">
-    <img src="${image.webformatURL}" alt="${image.tags}" />
+  <a href="${largeImageURL}">
+    <img
+      src="${webformatURL}"
+      alt="${tags}"
+      class="gallery-image"
+    />
   </a>
+
+  <div class="info">
+    <p><b>Likes:</b> ${likes}</p>
+    <p><b>Views:</b> ${views}</p>
+    <p><b>Comments:</b> ${comments}</p>
+    <p><b>Downloads:</b> ${downloads}</p>
+  </div>
 </li>
 `
     )
@@ -39,7 +58,8 @@ export function createGallery(images) {
 }
 
 export function clearGallery() {
-  getGallery().innerHTML = '';
+  const gallery = getGallery();
+  gallery.innerHTML = '';
 }
 
 export function showLoader() {
