@@ -4,28 +4,32 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vanilla App Template</title>
+    <title>Image Search App</title>
+
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
+
   <body>
     <load src="./partials/header.html" icon-path="img/sprite.svg#logo" />
 
-    <form class="form">
-  <input
-  type="text"
-  name="searchText"
-  autocomplete="off"
-  placeholder="Search images..."
-/>
-  <button type="submit">Search</button>
-</form>
+    <main>
+      <form class="form">
+        <input
+          type="text"
+          name="searchText"
+          autocomplete="off"
+          placeholder="Search images..."
+        />
+        <button type="submit">Search</button>
+      </form>
 
-<ul class="gallery"></ul>
+      <ul class="gallery"></ul>
 
-<button class="load-more">Load more</button>
+      <button class="load-more">Load more</button>
 
+      <div class="loader"></div>
+    </main>
 
-
-    <script type="module" src="./main.js"></script>
+    <script type="module" src="/src/main.js"></script>
   </body>
 </html>
